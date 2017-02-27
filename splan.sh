@@ -25,6 +25,7 @@ then
 		;;
 	"help")
 		echo "I don't feel like writing a help... I'll write it later..."
+		;;
 	*)
 		echo "What? Invalid command! check \`help\`"
 		exit 2
