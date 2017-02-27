@@ -1,0 +1,15 @@
+To install this simple script, do the following:
+
+1. Run init.sh with `./init.sh` or `sh init.sh`
+2. Configure it with your own username in the configuration file indicated.
+3. Run splan.sh
+
+Optionally, you may want to symlink splan.sh to somewhere in the PATH,
+or move it there, or maybe even add the drectory where it is to you
+PATH.
+Just do whatever you find convenient.
+
+Good luck with the program; have fun using it.
+
+
+Your contribution is welcome at github. :)
