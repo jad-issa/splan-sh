@@ -51,7 +51,7 @@ echo "$me: Don't include a slash at the end."
 echo "$me: Directory needs to already exist!"
 echo "$me: One more thing: don't use variable such as $HOME, use full path."
 read installdir
-[ $installdir = "" ] && installdir=/usr/bin
+[ "$installdir" = "" ] && installdir=/usr/bin
 
 echo "$me: Does this directory need root permissions to be written on? [y/n]"
 echo "$me: WARNING: the script is yet unstable and giving it root permissions may prove to be unwanted!"
