@@ -1,8 +1,8 @@
 To install this simple script, do the following:
 
-1. Run init.sh with `./init.sh` or `sh init.sh` to initialize the
-   program.
-3. Run splan.sh
+1. Run install.sh and hope it works.
+2. If you chose a directory that isn't in the PATH, include it now.
+3. Run splan
 
 Optionally, you may want to symlink splan.sh to somewhere in the PATH,
 or move it there, or maybe even add the drectory where it is to you
