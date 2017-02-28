@@ -50,8 +50,8 @@ then
 	    initialize
 	    ;;
 	"n")
-	    echo "$me: Then what the hell are you doing with this script? (In case you don't know, you're running init.sh.)"
-	    exit 4
+	    echo "$me: Then what are you doing with this script? (In case you don't know, you're running init.sh.)"
+	    exit 0
 	    ;;
 	"k")
 	    echo "$me: Bayyak k! (For those who don't understand, your answer is not valid, use only 'y' or 'n' and not k.)"
