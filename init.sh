@@ -17,7 +17,7 @@ initialize () {
     if [ -d $directory ]
     then
 	
-	if [ $(ls -A $directory) ] 
+	if [[ $(ls -A $directory) ]]
 	then
 		echo "$me: Data directory is not an empty directory!"
 		echo "$me: Please choose another directory or empty the one chosen!"

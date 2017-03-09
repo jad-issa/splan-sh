@@ -1,18 +1,32 @@
 #!/bin/sh
 
 # Read data directory
-IFS=\= read -r key datadir <<< "$(grep datadir $HOME/.splan/splan.conf)"
+if [ -d $HOME/.splan/ ]
+then
+    if [ -e $HOME/.splan/splan.conf ]
+    then
+	IFS=\= read -r key datadir <<< "$(grep datadir $HOME/.splan/splan.conf)"
+    else
+	echo "Did not find configuration file! Did you install it correctly?"
+	exit 32
+    fi
+else
+    echo "Did not find ~/.splan/ directory! Did you install it correctly?"
+    exit 32
+fi	  
 
 if [ -d $datadir ]
 then
-    
     if [ $# -eq 0 ]
     then
 	
 	if [ "$(ls -A $datadir)" ]
 	then
-	    # Print the task list
-	    cat $datadir*
+	    for file in $datadir*
+	    do
+		echo $file
+		cat $file
+	    done
 	else
 	    echo "No task is created yet! Go ahead and create one with the \`create\` command!"
 	fi

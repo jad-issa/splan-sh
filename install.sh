@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Snippet by Tanktalus at stackoverflow.com
 
@@ -33,15 +33,16 @@ echo "$me: Running initialization script..."
 
 # Installation procedure
 installsplan () {
-    echo "$me: copying splan.sh to $installdir. Let's hope it works!"
-    if cp splan.sh $installdir/splan
+    echo "$1: copying splan.sh to $2. Let's hope it works!"
+    if cp splan.sh $2/splan
     then
-	echo "$me: Congrats! It worked!"
+	echo "$1: Congrats! It worked!"
     else
-	echo "$me: Sorry it failed!"
+	echo "$1: Sorry it failed!"
 	exit 32
     fi
 }
+
 
 # Extract necessary data
 
@@ -49,7 +50,7 @@ echo "$me: Where do you want to store the executable? [/usr/bin] (it might be he
 echo "$me: PATH: $PATH"
 echo "$me: Don't include a slash at the end."
 echo "$me: Directory needs to already exist!"
-echo "$me: One more thing: don't use variable such as $HOME, use full path."
+echo "$me: One more thing: don't use variable such as \$HOME, use full path."
 read installdir
 [ "$installdir" = "" ] && installdir=/usr/bin
 
@@ -63,18 +64,19 @@ case $rootpermissions in
 	echo "$me: Note: only the main executable will be included; if you want to reconfigure or anything, return to the original code."
 	if sh init.sh # init.sh shouldn't be run with root priviledges!
 	then
-	    sudo installsplan && echo "$me: Installation complete! Thank you! LICENSE: GPL3.0" && exit 0
+	    DECL=`declare -f installsplan`
+	    sudo bash -c "$DECL; installsplan $me $installdir" && echo $me: Installation complete! Thank you! LICENSE: GPL3.0 && exit 0
 	else
-	    echo "$me: Initialization unsuccessul; see errors givin by init script."
+	    echo "$me: Initialization unsuccessul; see errors given by init script."
 	    exit 32
 	fi
 	;;
     "n")
-	echo "$me: Better not (safer because the software isn't so stable just yet)"
+	echo "$me: Better not (safer because the software isn't so stable just yet!)"
 	echo "$me: Note: only the main executable will be included; if you want to reconfigure or anything, return to the original code."
 	if sh init.sh # init.sh shouldn't be run with root priviledges!
 	then
-	    installsplan && echo "$me: Installation complete! Thank you! LICENSE: GPL3.0" && exit 0
+	    installsplan $me $installdir && echo "$me: Installation complete! Thank you! LICENSE: GPL3.0" && exit 0
 	else
 	    echo "$me: Initialization unsuccessul; see errors givin by init script."
 	    exit 32
