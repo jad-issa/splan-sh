@@ -24,6 +24,7 @@ then
 	then
 	    for file in $datadir*
 	    do
+		echo
 		echo $file
 		cat $file
 	    done
@@ -35,7 +36,32 @@ then
 	case $1 in
 
 	"create")
-	    cat - > $datadir/$RANDOM && echo "Successfully wrote file" && exit 0
+	    cat - > $datadir/$RANDOM && echo "Successfully written file" && exit 0
+	    ;;
+	"remove")
+	    if [ "$2" = "" ]
+	    then
+		echo "No task is given to be removed!"
+		echo "Synopsis: "
+		echo "splan remove task-id"
+		exit 2
+	    else
+		if [ -e $datadir$2 ]
+		then
+		    if [ -d $datadir$2 ]
+		    then
+			echo "Are you trying to remove a directory?"
+			exit 2
+		    else
+			rm $datadir$2
+			echo "Successfully removed task $2!"
+			exit 0
+		    fi
+		else
+		    echo "Unable to remove unexistant task $2"
+		    exit 2
+		fi
+	    fi
 	    ;;
 	"clear")
 	    echo "Are you sure you want to delete all of your tasks?[y/n]"
